@@ -1,0 +1,28 @@
+{
+  "name": "alura-node-gemini",
+  "version": "1.0.0",
+  "description": "Backend project to learn Node.js and Gemini with Alura",
+  "main": "server.js",
+  "type": "module",
+  "license": "AGPL-version-3.0",
+  "private": false,
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [],
+  "author": {
+    "name": "Maurici Ferreira Junior"
+  },
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
