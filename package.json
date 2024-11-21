@@ -20,9 +20,10 @@
     "name": "Maurici Ferreira Junior"
   },
   "scripts": {
-    "dev": "node server.js"
+    "dev": "node --watch --env-file=.env server.js"
   },
   "dependencies": {
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "mongodb": "^6.10.0"
   }
 }
