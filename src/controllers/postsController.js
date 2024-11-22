@@ -1,6 +1,7 @@
 import fs from 'fs';
 
-import { getAll, create } from '../models/postsModel.js';
+import { getAll, create, update } from '../models/postsModel.js';
+import { createImageDescription, createImageAlt } from '../services/geminiService.js';
 
 export async function getAllPosts(req, res) {
     try {
@@ -42,6 +43,28 @@ export async function uploadImage(req, res) {
         const fileName = `uploads/${postId}.${fileExtension}`;
         fs.renameSync(req.file.path, fileName);
         res.status(201).json(post);
+    } catch (error) {
+        handleError(error, res);
+    }
+}
+
+export async function updatePostImage(req, res) {
+    const postId = req.params.id;
+    const imageUrl = `http://localhost:3000/${postId}.png`;
+
+    try {
+        const imageBuffer = fs.readFileSync(`uploads/${postId}.png`);
+        const description = await createImageDescription(imageBuffer);
+        const alt = await createImageAlt(imageBuffer);
+
+        const post = {
+            image: imageUrl,
+            description: description,
+            alt: alt,
+        }
+
+        const updatedPost = await update(postId, post);
+        res.status(200).json(updatedPost);
     } catch (error) {
         handleError(error, res);
     }
